@@ -10,5 +10,6 @@ package neuralnetwork;
  * @author GBalayan
  */
 public class Training {
+    //will do different types of training
     
 }
