@@ -11,30 +11,38 @@ import java.util.ArrayList;
  */
 public class NeuralNetwork {
 
+    public InputLayer inLayer;
+    public OutputLayer outLayer;
+    public HiddenLayer hiddenLayer;
+    public ArrayList<HiddenLayer> listOfHiddenLayer;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        InputLayer n = new InputLayer();
-        n.setNeuronCount(2);
-        n.initLayer(n);
-        n.print(n);
+        //build a Neural Network (input layer, hidden layers and output layer)
+        NeuralNetwork n = new NeuralNetwork();
+        n.inLayer = new InputLayer();
+        n.inLayer.setNeuronCount(2);
+        n.inLayer.initLayer(n.inLayer);
+        n.inLayer.print(n.inLayer);
 
-        OutputLayer n2 = new OutputLayer();
-        n2.setNeuronCount(1);
-        n2.initLayer(n2);
-        n2.print(n2);
+        n.outLayer = new OutputLayer();
+        n.outLayer.setNeuronCount(1);
+        n.outLayer.initLayer(n.outLayer);
+        n.outLayer.print(n.outLayer);
 
-        ArrayList<HiddenLayer> listOfHiddenLayer = new ArrayList<HiddenLayer>();
+        n.listOfHiddenLayer = new ArrayList<HiddenLayer>();
         for (int i = 0; i < 1; i++) {
             HiddenLayer hiddenLayer = new HiddenLayer();
             hiddenLayer.setNeuronCount(3);
-            listOfHiddenLayer.add(hiddenLayer);
+            n.listOfHiddenLayer.add(hiddenLayer);
         }
-        HiddenLayer h = new HiddenLayer();
-        listOfHiddenLayer = h.initLayer(h, n, n2, listOfHiddenLayer);
+        n.hiddenLayer = new HiddenLayer();
+        n.listOfHiddenLayer = n.hiddenLayer.initLayer(n.hiddenLayer, n.inLayer, n.outLayer, n.listOfHiddenLayer);
+        n.hiddenLayer.print(n.listOfHiddenLayer);
+        //train the neural network
         
-        h.print(listOfHiddenLayer);
+        
     }
 
 }
